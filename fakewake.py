@@ -429,8 +429,9 @@ def webserver(host, port):
                                     reply += 'Off/Standby'
                             else:
                                 reply += 'Unknown'
-				reply += '<br>'
+			    reply += '<br>'
                             reply += '<br><b>Pingable:</b> %s' % PINGABLE
+			    reply += '<br>'
                             if POWER_ENABLED:
                                 reply += '<br><form action="/power" method="get">'
                                 reply += '<input type="submit" value="Power On/Off" %s></form><br>' % button_state

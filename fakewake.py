@@ -668,13 +668,13 @@ if __name__ == '__main__':
         MIN_INTERVAL = float(default_config['min_interval'])
     try:
         WEBSERVER_ENABLED = config.getboolean('webserver','web_enabled')
-		WEBSERVER_NAME = config.get('webserver','name')
+	WEBSERVER_NAME = config.get('webserver','name')
         WEBSERVER_HOST = config.get('webserver','host')
         WEBSERVER_PORT = config.getint('webserver', 'web_port')
         WEBSERVER_RELOAD_DELAY = config.get('webserver','reload_delay')
     except ConfigParser.NoSectionError:
         WEBSERVER_ENABLED = bool(default_config['web_enabled'])
-		WEBSERVER_NAME = default_config['name']
+	WEBSERVER_NAME = default_config['name']
         WEBSERVER_HOST = default_config['host']
         WEBSERVER_PORT = int(default_config['web_port'])
         WEBSERVER_RELOAD_DELAY = default_config['reload_delay']

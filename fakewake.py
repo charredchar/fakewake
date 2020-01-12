@@ -21,6 +21,7 @@ import struct
 import sys
 import time
 import threading
+from gpiozero import PingServer
 
 
 # function definitiona start here
@@ -146,7 +147,7 @@ def pinger(target, interval):
 
     # create ping object
     logging.debug('Creating pinger object for %s' % TARGET_ID)
-    pingthing = os.system("ping -c 1 " + (target))
+    pingthing = gpiozero.PingServer(target)
     # ensure we have an apropriate value
     if pingthing.value:
         PINGABLE = 'Yes'

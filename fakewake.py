@@ -333,7 +333,7 @@ def webserver(host, port):
 
     base_header = 'HTTP/1.0 '
     ok_header = '200 OK\n\n'
-    html_header = '<!DOCTYPE HTML>\n<html><head><title>fakewake</title>\n'
+    html_header = '<!DOCTYPE HTML>\n<html><head><title>print(WEBSERVER_NAME)</title>\n'
     clacks_header = '<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />\n'
     refresh_header = '<meta http-equiv="refresh" content="%s;/">' % WEBSERVER_RELOAD_DELAY
     end_header = '</head><body>'
@@ -429,7 +429,7 @@ def webserver(host, port):
                                 reply += 'Unknown'
                             reply += '<br><b>Pingable:</b> %s' % PINGABLE
                             if POWER_ENABLED:
-                                reply += '<center><form action="/power" method="get">'
+                                reply += '<form action="/power" method="get">'
                                 reply += '<input type="submit" value="Power On/Off" %s></form><br>' % button_state
                                 reply += '<form action="/forcepower" method="get">'
                                 reply += '<input type="submit" value="Force Power Off" %s></form><br>' % button_state
@@ -442,7 +442,7 @@ def webserver(host, port):
                             if AUX2_ENABLED:
                                 reply += '<form action="/aux2" method="get">'
                                 reply += '<input type="submit" value="Aux 2" %s></form><br>' % button_state
-                            reply += '</center></body></html>'
+                            reply += '</body></html>'
                             # send reply
                             client_socket.sendall(reply)
                         else:
@@ -450,9 +450,9 @@ def webserver(host, port):
                             # this is the same for all actions
                             reply = base_header + ok_header + html_header + clacks_header + refresh_header
                             reply += 'Working. Please wait...'
-                            reply += '<center><form action="/" method="get">'
+                            reply += '<form action="/" method="get">'
                             reply += '<input type="submit" value="Continue">'
-                            reply += '</form></center></body></html>'
+                            reply += '</form></body></html>'
                             client_socket.sendall(reply)
                             # do action
                             if url == '/power' and POWER_ENABLED:
@@ -529,6 +529,7 @@ if __name__ == '__main__':
                       'long':'5.0',
                       'min_interval':'180',
                       'web_enabled':'True',
+					  'name':'Unknown',
                       'host':'',
                       'web_port':'8080',
                       'reload_delay':'15',
@@ -667,11 +668,13 @@ if __name__ == '__main__':
         MIN_INTERVAL = float(default_config['min_interval'])
     try:
         WEBSERVER_ENABLED = config.getboolean('webserver','web_enabled')
+		WEBSERVER_NAME = config.get('webserver','name')
         WEBSERVER_HOST = config.get('webserver','host')
         WEBSERVER_PORT = config.getint('webserver', 'web_port')
         WEBSERVER_RELOAD_DELAY = config.get('webserver','reload_delay')
     except ConfigParser.NoSectionError:
         WEBSERVER_ENABLED = bool(default_config['web_enabled'])
+		WEBSERVER_NAME = default_config['name']
         WEBSERVER_HOST = default_config['host']
         WEBSERVER_PORT = int(default_config['web_port'])
         WEBSERVER_RELOAD_DELAY = default_config['reload_delay']

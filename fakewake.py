@@ -333,8 +333,8 @@ def webserver(host, port):
 
     base_header = 'HTTP/1.0 '
     ok_header = '200 OK\n\n'
-    html_header = '<!DOCTYPE HTML>\n<html><head><title>fakewake - %s</title>\n' % WEBSERVER_NAME
-    clacks_header = '<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />\n'
+    html_header = '<!DOCTYPE HTML>\n<html><head><title>fakewake - %s</title>' % WEBSERVER_NAME
+    clacks_header = '\n<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />\n'
     refresh_header = '<meta http-equiv="refresh" content="%s;/">' % WEBSERVER_RELOAD_DELAY
     end_header = '</head><body>'
 

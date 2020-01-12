@@ -419,7 +419,7 @@ def webserver(host, port):
                             else:
                                 button_state = 'disabled'
                             reply = base_header + ok_header + html_header + clacks_header + refresh_header + end_header
-			    reply += '<b>Computer:</b> ' % WEBSERVER_NAME
+			    reply += '<b>Computer:</b> '
 			    reply += '<br>'
                             reply += '<b>PSU State:</b> '
                             if PSU_SENSE_ENABLED:

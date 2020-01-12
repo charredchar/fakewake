@@ -333,7 +333,7 @@ def webserver(host, port):
 
     base_header = 'HTTP/1.0 '
     ok_header = '200 OK\n\n'
-    html_header = '<!DOCTYPE HTML>\n<html><head><title>fakewake</title>\n'
+    html_header = '<!DOCTYPE HTML>\n<html><head><title>fakewake - %s</title>\n' % WEBSERVER_NAME
     clacks_header = '<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />\n'
     refresh_header = '<meta http-equiv="refresh" content="%s;/">' % WEBSERVER_RELOAD_DELAY
     end_header = '</head><body>'
@@ -421,7 +421,7 @@ def webserver(host, port):
                             reply = base_header + ok_header + html_header + clacks_header + refresh_header + end_header
 			    reply += '<b>Computer:</b> %s' % WEBSERVER_NAME
 			    reply += '<br>'
-                            reply += '<br><b>PSU State:</b> '
+                            reply += '<b>PSU State:</b> '
                             if PSU_SENSE_ENABLED:
                                 if PSU_SENSE.is_active:
                                     reply += 'On'
@@ -430,7 +430,7 @@ def webserver(host, port):
                             else:
                                 reply += 'Unknown'
 			    reply += '<br>'
-                            reply += '<br><b>Pingable:</b> %s' % PINGABLE
+                            reply += '<b>Pingable:</b> %s' % PINGABLE
 			    reply += '<br>'
                             if POWER_ENABLED:
                                 reply += '<br><form action="/power" method="get">'

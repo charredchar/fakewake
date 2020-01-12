@@ -333,7 +333,7 @@ def webserver(host, port):
 
     base_header = 'HTTP/1.0 '
     ok_header = '200 OK\n\n'
-    html_header = '<!DOCTYPE HTML>\n<html><head><title>print(WEBSERVER_NAME)</title>\n'
+    html_header = '<!DOCTYPE HTML>\n<html><head><title>fakewake</title>\n'
     clacks_header = '<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />\n'
     refresh_header = '<meta http-equiv="refresh" content="%s;/">' % WEBSERVER_RELOAD_DELAY
     end_header = '</head><body>'
@@ -419,7 +419,8 @@ def webserver(host, port):
                             else:
                                 button_state = 'disabled'
                             reply = base_header + ok_header + html_header + clacks_header + refresh_header + end_header
-                            reply += '<b>PSU State:</b> '
+			    reply += '<b>WEBSERVER_NAME</b>'
+                            reply += '<br><b>PSU State:</b> '
                             if PSU_SENSE_ENABLED:
                                 if PSU_SENSE.is_active:
                                     reply += 'On'
@@ -429,7 +430,7 @@ def webserver(host, port):
                                 reply += 'Unknown'
                             reply += '<br><b>Pingable:</b> %s' % PINGABLE
                             if POWER_ENABLED:
-                                reply += '<form action="/power" method="get">'
+                                reply += '<br><form action="/power" method="get">'
                                 reply += '<input type="submit" value="Power On/Off" %s></form><br>' % button_state
                                 reply += '<form action="/forcepower" method="get">'
                                 reply += '<input type="submit" value="Force Power Off" %s></form><br>' % button_state
@@ -529,7 +530,7 @@ if __name__ == '__main__':
                       'long':'5.0',
                       'min_interval':'180',
                       'web_enabled':'True',
-					  'name':'Unknown',
+		      'name':'Unknown',
                       'host':'',
                       'web_port':'8080',
                       'reload_delay':'15',

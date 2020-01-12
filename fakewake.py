@@ -419,8 +419,7 @@ def webserver(host, port):
                             else:
                                 button_state = 'disabled'
                             reply = base_header + ok_header + html_header + clacks_header + refresh_header + end_header
-			    reply += '<b>Computer:</b> '
-			    reply += '<br>'
+			    reply += '<b>Computer:</b> ' % WEBSERVER_NAME
                             reply += '<b>PSU State:</b> '
                             if PSU_SENSE_ENABLED:
                                 if PSU_SENSE.is_active:
@@ -430,7 +429,6 @@ def webserver(host, port):
                             else:
                                 reply += 'Unknown'
                             reply += '<b>Pingable:</b> %s' % PINGABLE
-			    reply += '<br>'
                             if POWER_ENABLED:
                                 reply += '<br><form action="/power" method="get">'
                                 reply += '<input type="submit" value="Power On/Off" %s></form><br>' % button_state

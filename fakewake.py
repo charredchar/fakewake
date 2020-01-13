@@ -334,15 +334,16 @@ def webserver(host, port):
     base_header = 'HTTP/1.0 '
     ok_header = '200 OK\n\n'
     html_header = '<!DOCTYPE HTML>\n<html><head><title>fakewake - %s</title>' % WEBSERVER_NAME
-    clacks_header = '\n<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />\n'
+    icon_header = '\n<link rel='icon' href='favicon.ico' type='image/x-icon'/ >\n'
+    clacks_header = '<meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />\n'
     refresh_header = '<meta http-equiv="refresh" content="%s;/">' % WEBSERVER_RELOAD_DELAY
     end_header = '</head><body>'
 
-    error403 = base_header + ok_header + html_header + clacks_header + end_header
+    error403 = base_header + ok_header + html_header + icon_header + clacks_header + end_header
     error403 += '<h2>403 Forbidden</h2></body></html>'
-    error404 = base_header + ok_header + html_header + clacks_header + end_header
+    error404 = base_header + ok_header + html_header + icon_header + clacks_header + end_header
     error404 += '<h2>This space unintetionally left blank</h2></body></html>'
-    error405 = base_header + '405 Method Not Allowed\n' + html_header + clacks_header + end_header
+    error405 = base_header + '405 Method Not Allowed\n' + html_header + icon_header + clacks_header + end_header
     error405 += '<h2>405 Method Not Allowed</h2></body></html>'
     
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -418,7 +419,7 @@ def webserver(host, port):
                                 button_state = ''
                             else:
                                 button_state = 'disabled'
-                            reply = base_header + ok_header + html_header + clacks_header + refresh_header + end_header
+                            reply = base_header + ok_header + html_header + icon_header + clacks_header + refresh_header + end_header
 			    reply += '<b>Computer:</b> %s' % WEBSERVER_NAME
 			    reply += '<br>'
                             reply += '<br><b>PSU State:</b> '
@@ -452,7 +453,7 @@ def webserver(host, port):
                         else:
                             # send reply
                             # this is the same for all actions
-                            reply = base_header + ok_header + html_header + clacks_header + refresh_header
+                            reply = base_header + ok_header + html_header + icon_header + clacks_header + refresh_header
                             reply += 'Working. Please wait...'
                             reply += '<form action="/" method="get">'
                             reply += '<input type="submit" value="Continue">'

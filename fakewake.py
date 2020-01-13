@@ -21,7 +21,6 @@ import struct
 import sys
 import time
 import threading
-import PingServer
 
 
 # function definitiona start here
